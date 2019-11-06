@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="SciTech:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/SciTech_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="SciTech/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="SciTech" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="KotlinJavaRuntime" />
+          <element id="library" level="project" name="de.neuland-bfi:jade4j:1.2.7" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
