@@ -14,4 +14,15 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <!--    <servlet>-->
+    <!--        <display-name>server module extended</display-name>-->
+    <!--        <servlet-name>Main</servlet-name>-->
+    <!--        <servlet-class>MyServer</servlet-class>-->
+    <!--        <load-on-startup>1</load-on-startup>-->
+    <!--    </servlet>-->
+
+    <!--    <servlet-mapping>-->
+    <!--        <servlet-name>Main</servlet-name>-->
+    <!--        <url-pattern>/*</url-pattern>-->
+    <!--    </servlet-mapping>-->
 </web-app>

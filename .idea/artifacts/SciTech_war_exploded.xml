@@ -6,10 +6,12 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="SciTech" />
+          <element id="module-output" name="server" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="KotlinJavaRuntime" />
           <element id="library" level="project" name="de.neuland-bfi:jade4j:1.2.7" />
+          <element id="library" level="project" name="KotlinJavaRuntime (2)" />
         </element>
       </element>
     </root>
