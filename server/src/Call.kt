@@ -45,7 +45,7 @@ class Call internal constructor(val servletRequest: HttpServletRequest, val serv
         isClosed = true
     }
 
-    fun respondRedirect(newLocation: String, permanent: Boolean = false) = ifNotClosed {
+    fun redirect(newLocation: String, permanent: Boolean = false) = ifNotClosed {
         servletResponse.setHeader("Location", newLocation)
         servletResponse.status = if (permanent) 301 else 302
         isClosed = true
