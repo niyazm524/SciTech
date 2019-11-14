@@ -1,34 +1,53 @@
-import controllers.UsersController
-import models.User
-import plugins.PugPlugin
-import plugins.PugPlugin.render
+import controllers.*
+import dao.UserDao
+import plugins.pug.PugPlugin
+import plugins.pug.render
 import javax.servlet.annotation.WebServlet
+import javax.servlet.http.Cookie
 
 @WebServlet("/*")
 class MyServer : Server() {
+
     override val routes = routing {
+
+        intercept {
+            if (!isAuthOk) {
+                val cookie = cookies["uid"]
+                if (cookie != null && cookie.value.isNotEmpty())
+                    session["USER"] = UserDao.getByUUID(cookie.value) as Any?
+            }
+        }
         get("/") {
-            val user = session["user"] as User?
-            if (user == null)
-                render("login")
-            else
+            if (isAuthOk)
                 render("index", mapOf("login" to user.username))
+            else
+                render("login")
         }
         post("/") {
-            val login = params["login"]
-            if (!login.isNullOrEmpty() && login == "niyaz") {
-                session["user"] = User(login)
+            val username = params["username"]
+            if (username.isNullOrEmpty()) {
+                respondText("Please fill the gaps")
+                return@post
+            }
+            if (login(username, "pass")) {
+                cookies += Cookie("uid", user.id.toString()).apply { maxAge = 90000 }
                 redirect("/")
             } else {
                 error("Unauthorized", 401)
             }
         }
-        get("/logout") {
-            val user = session["user"] as User?
-            if (user != null) {
-                session.remove("user")
+        filter {
+            if (!isAuthOk) {
                 redirect("/")
+                return@filter false
             }
+            return@filter true
+        }
+
+        get("/logout") {
+            logout()
+            cookies.remove("uid")
+            redirect("/")
         }
         router("/user", UsersController())
     }
