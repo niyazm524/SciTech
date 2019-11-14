@@ -1,3 +1,4 @@
+import session.Cookies
 import session.Session
 import utils.ServerMarker
 import javax.servlet.http.HttpServletRequest
@@ -18,6 +19,7 @@ class Call internal constructor(val servletRequest: HttpServletRequest, val serv
             servletResponse.contentType = "$value; charset=UTF-8"
         }
     val session: Session by lazy { return@lazy Session(servletRequest.session) }
+    val cookies = Cookies(servletRequest.cookies, servletResponse)
 
     init {
         servletRequest.characterEncoding = "UTF-8"

@@ -18,7 +18,7 @@ class Session internal constructor(private val jSession: HttpSession) {
         return jSession.getAttribute(key)
     }
 
-    operator fun set(key: String, value: Any) {
+    operator fun set(key: String, value: Any?) {
         jSession.setAttribute(key, value)
     }
 

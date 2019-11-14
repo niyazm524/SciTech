@@ -1,15 +1,12 @@
 package dsl
 
 import Call
-import routing.Interceptor
-import routing.Route
-import routing.RouteImpl
-import routing.Router
+import routing.*
 import utils.ServerMarker
 
 @ServerMarker
 class RouterBuilder {
-    private val routes = mutableListOf<Route>()
+    internal val routes = mutableListOf<Route>()
 
     fun get(path: String, block: Call.() -> Unit) {
         routes.add(RouteImpl("GET", path, block))
@@ -38,6 +35,10 @@ class RouterBuilder {
 
     fun intercept(block: Call.() -> Unit) {
         routes.add(Interceptor(block))
+    }
+
+    fun filter(proceed: Call.() -> Boolean) {
+        routes.add(Filter(proceed))
     }
 
     internal fun build() = routes.toList()

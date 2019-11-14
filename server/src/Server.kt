@@ -1,11 +1,9 @@
 import dsl.RouterBuilder
 import routing.Route
-import utils.ServerMarker
 import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-@ServerMarker
 abstract class Server : HttpServlet() {
     protected open val routes: List<Route> = listOf()
 
