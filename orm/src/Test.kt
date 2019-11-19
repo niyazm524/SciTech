@@ -1,3 +1,4 @@
+import expressions.Insert
 import expressions.Select
 import kotlin.system.measureTimeMillis
 
@@ -7,7 +8,7 @@ object TestDao: Dao() {
     val getByUsername: (username: String, minAge: Int) -> Test?
             by Select("SELECT * FROM users WHERE name = ? AND age >= ? LIMIT 1")
 
-    val create: (test: Test) by Insert()
+    val create: (test: Test) -> Boolean by Insert("users")
 }
 class TestDatabase : Database() {
     override val url = "jdbc:mysql://localhost/scitech?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC"
@@ -21,4 +22,5 @@ fun main() {
     measureTimeMillis { TestDao.getByUsername("Niyaz", 0) }.let { println("Cold start: $it ms") }
     measureTimeMillis { TestDao.getByUsername("neyas", 0) }.let { println("Hot start: $it ms") }
     println(TestDao.getByUsername("Niyaz", 20))
+    println(TestDao.create(Test(0, "Test user", null)))
 }
