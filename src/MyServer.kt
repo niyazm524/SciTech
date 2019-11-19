@@ -1,6 +1,5 @@
 import controllers.*
 import dao.UserDao
-import models.User
 import plugins.pug.PugPlugin
 import plugins.pug.render
 import javax.servlet.annotation.WebServlet

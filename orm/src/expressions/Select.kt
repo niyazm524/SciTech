@@ -30,10 +30,8 @@ class Select(@Language("MySQL") val sql: String) {
             Function3::class.java -> Func.F3(this::selectOne)
             else -> error("Unknown lambda function")
         }
-        println(T::class.java.isAssignableFrom(Function1::class.java))
-        println(T::class.constructors)
-        return func as T
 
+        return func as T
     }
 
     fun initVars(thisRef: Dao, property: KProperty<*>) {
