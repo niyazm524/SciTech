@@ -7,11 +7,15 @@
         <element id="directory" name="classes">
           <element id="module-output" name="SciTech" />
           <element id="module-output" name="server" />
+          <element id="module-output" name="orm" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="KotlinJavaRuntime" />
           <element id="library" level="project" name="de.neuland-bfi:jade4j:1.2.7" />
           <element id="library" level="project" name="KotlinJavaRuntime (2)" />
+          <element id="library" level="project" name="mysql:mysql-connector-java:8.0.18" />
+          <element id="library" level="project" name="org.apache.tomcat:tomcat-jdbc:9.0.24" />
+          <element id="file-copy" path="$APPLICATION_HOME_DIR$/lib/annotations.jar" />
         </element>
       </element>
     </root>

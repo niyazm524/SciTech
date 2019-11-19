@@ -1,15 +1,14 @@
 package dao
 
+import Dao
+import expressions.Select
 import models.User
 
-object UserDao {
-    val users = mutableMapOf(
-        1 to User("niyaz")
-    )
-    val uuids = mutableMapOf<String, Int>()
+object UserDao : Dao() {
+    val getById: (id: Long, name: String, last: String, count: Int, offset: Int) -> User by Select("")
 
-    fun getByUUID(uuid: String): User? = uuids[uuid]?.let { users[it] }
+    val getByUUID: (uuid: String) -> User? by Select("")
 
-    fun getWithCredentials(username: String, password: String): User? =
-        users.values.firstOrNull { it.username == username }
+    val getWithCredentials: (username: String, password: String) -> User?
+        by Select("")
 }
