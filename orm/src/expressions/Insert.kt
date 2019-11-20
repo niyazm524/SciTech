@@ -1,14 +1,20 @@
 package expressions
 
 import Dao
+import annotations.Alias
+import annotations.Ignore
+import annotations.Table
 import java.sql.PreparedStatement
 import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 import kotlin.reflect.KProperty1
+import kotlin.reflect.full.findAnnotation
+import kotlin.reflect.full.hasAnnotation
 import kotlin.reflect.full.memberProperties
 
-class Insert(private val table: String, private val ignoreDuplicate: Boolean = true) {
+class Insert(private val ignoreDuplicate: Boolean = true) {
 
+    private lateinit var table: String
     private lateinit var statement: PreparedStatement
     private lateinit var getters: List<KProperty1.Getter<out Any, Any?>>
     var isInitialized = false
@@ -20,8 +26,12 @@ class Insert(private val table: String, private val ignoreDuplicate: Boolean = t
     }
 
     fun initVars(thisRef: Dao, dataClass: KClass<*>) {
-        val paramNames = dataClass.memberProperties.map { it.name }
-        getters = dataClass.memberProperties.map { it.getter }
+        table = dataClass.findAnnotation<Table>()?.tableName
+            ?: dataClass.simpleName
+                    ?: error("Can't get $dataClass's table name")
+        val fields = dataClass.memberProperties.filter { !it.hasAnnotation<Ignore>() }
+        val paramNames = fields.map { it.findAnnotation<Alias>()?.alias ?: it.name }.map { "`$it`" }
+        getters = fields.map { it.getter }
         statement = thisRef.dataSource.connection.prepareStatement(
             """
             INSERT ${if (ignoreDuplicate) "IGNORE " else " "}INTO $table (${paramNames.joinToString(", ")})

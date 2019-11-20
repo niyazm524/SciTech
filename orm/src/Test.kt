@@ -8,7 +8,7 @@ object TestDao: Dao() {
     val getByUsername: (username: String, minAge: Int) -> Test?
             by Select("SELECT * FROM users WHERE name = ? AND age >= ? LIMIT 1")
 
-    val create: (test: Test) -> Boolean by Insert("users")
+    val create: (test: Test) -> Boolean by Insert()
 }
 class TestDatabase : Database() {
     override val url = "jdbc:mysql://localhost/scitech?useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC"

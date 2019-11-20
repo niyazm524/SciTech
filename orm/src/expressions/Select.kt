@@ -1,6 +1,7 @@
 package expressions
 
 import Dao
+import annotations.Alias
 import expressions.fabric.Func
 import org.intellij.lang.annotations.Language
 import java.sql.PreparedStatement
@@ -8,6 +9,8 @@ import java.sql.ResultSet
 import kotlin.reflect.KClass
 import kotlin.reflect.KParameter
 import kotlin.reflect.KProperty
+import kotlin.reflect.full.findAnnotation
+import kotlin.reflect.full.memberProperties
 import kotlin.reflect.full.primaryConstructor
 import kotlin.system.measureTimeMillis
 
@@ -36,14 +39,19 @@ class Select(@Language("MySQL") val sql: String) {
 
     fun initVars(thisRef: Dao, property: KProperty<*>) {
         rClass = property.returnType.arguments.last().type?.classifier as KClass<*>
-        paramsMap = getParamsMap(rClass.primaryConstructor!!.parameters)
+        paramsMap = getParamsMap(rClass)
         statement = thisRef.dataSource.connection.prepareStatement(sql)
         isInitialized = true
     }
 
-    private fun getParamsMap(params: List<KParameter>): Map<String, KParameter> {
+    private fun getParamsMap(rClass: KClass<*>): Map<String, KParameter> {
+        val props = rClass.memberProperties
         val map = mutableMapOf<String, KParameter>()
-        params.forEach { map[it.name!!] = it }
+        rClass.primaryConstructor!!.parameters.forEach { param ->
+            val name = param.name!!
+            val col = props.firstOrNull { it.name == name }?.findAnnotation<Alias>()?.alias ?: name
+            map[col] = param
+        }
         return map
     }
 
