@@ -8,5 +8,11 @@ class LoginController : Router() {
         get("/") {
             render("login")
         }
+
+        post("/") {
+            val username = requireNotNull(params["username"]) { "No username" }
+            val password = requireNotNull(params["password"]) { "Please provide password" }
+            login(username, password)
+        }
     }
 }

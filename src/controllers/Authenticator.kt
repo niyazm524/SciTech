@@ -3,6 +3,7 @@ package controllers
 import Call
 import dao.UserDao
 import models.User
+import java.security.MessageDigest
 
 val Call.user: User
     get() = this.session["USER"] as User
@@ -17,7 +18,7 @@ val Call.isAuthOk: Boolean
     get() = this.userOptional != null
 
 fun Call.login(username: String, password: String): Boolean {
-    val user = UserDao.getWithCredentials(username, password)
+    val user = UserDao.getWithCredentials(username, hashPass(password))
     if (user != null) {
         session["USER"] = user
         return true
@@ -27,4 +28,11 @@ fun Call.login(username: String, password: String): Boolean {
 
 fun Call.logout() {
     session.remove("USER")
+}
+
+fun hashPass(password: String): String {
+    return MessageDigest
+        .getInstance("SHA-256")
+        .digest(password.toByteArray())!!
+        .contentToString()
 }

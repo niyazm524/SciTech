@@ -2,11 +2,13 @@ extends includes/base
 
 block content
   img(src='https://dwstroy.ru/lessons/les3373/demo/img/men.png')
-  form
+  form(method="POST" action="/login")
     .dws-input
-      input(type='text' name='secondname' placeholder='Электронная почта')
+      input(type='text' name='username' placeholder='Имя пользователя')
     .dws-input
       input(type='password' name='password' placeholder='Пароль')
+    if message
+      div(style="color: #ff5959;")= message
     input.dws-submit(type='submit' name='submit' value='Войти')
     br
     .form-group.form-check
