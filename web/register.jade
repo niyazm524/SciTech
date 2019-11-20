@@ -2,20 +2,22 @@ extends includes/base
 
 block content
   img(src='https://dwstroy.ru/lessons/les3373/demo/img/men.png')
-  form
+  form(method="POST" action="/register")
     .dws-input
-      input(type='text' name='firstname' placeholder='Имя')
+      input(type='text' name='name' placeholder='Имя')
     .dws-input
-      input(type='text' name='secondname' placeholder='Фамилия')
+      input(type='text' name='username' placeholder='Никнейм')
     .dws-input
-      input(type='text' name='firstname' placeholder='Электронная почта')
+      input(type="tel" name='phoneNumber' placeholder='Номер телефона')
     .dws-input
       input(type='password' name='password' placeholder='Пароль')
+    if message
+      div(style="color: #ff5959;")= message
     input.dws-submit(type='submit' name='submit' value='РЕГИСТРАЦИЯ')
     br
     .form-group.form-check
-      input.form-check-input#exampleCheck1(type='checkbox' value='option1' style='width:20px; height:20px;')
-      label.form-check-label(style='margin-left: 10px; color:#DCDCDC' for='exampleCheck1') Запомнить меня
+      input.form-check-input#exampleCheck1(type='checkbox' name="agreement" value='true' style='width:20px; height:20px;')
+      label.form-check-label(style='margin-left: 10px; color:#DCDCDC' for='exampleCheck1') Согласен с условиями
   .dws-social
     i.fa.fa-vk(aria-hidden='true')
     i.fa.fa-twitter(aria-hidden='true')

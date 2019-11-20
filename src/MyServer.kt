@@ -21,7 +21,6 @@ class MyServer : Server() {
         router("/login", LoginController())
         router("/register", RegisterController())
         filter {
-            if (path.endsWith(".css")) return@filter true
             if (!isAuthOk) {
                 redirect("/")
                 return@filter false
