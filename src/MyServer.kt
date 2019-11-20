@@ -1,12 +1,9 @@
 import controllers.*
 import dao.UserDao
 import plugins.pug.PugPlugin
-import plugins.pug.render
 import plugins.static.StaticPlugin
 import plugins.static.static
-import java.security.MessageDigest
 import javax.servlet.annotation.WebServlet
-import javax.servlet.http.Cookie
 
 @WebServlet("/*", loadOnStartup = 1)
 class MyServer : Server() {
@@ -20,24 +17,8 @@ class MyServer : Server() {
                     session["USER"] = UserDao.getById(cookie.value.toLong()) as Any?
             }
         }
-        get("/") {
-            if (isAuthOk)
-                render("index", mapOf("login" to user.username))
-            else //respondText("webPath: ${servletContext.getRealPath("")}")
-                render("login")
-        }
-        post("/") {
-            val username = requireNotNull(params["username"]) { "No username" }
-            val password = requireNotNull(params["password"]) { "Please provide password" }
-
-            val hash = MessageDigest.getInstance("SHA-256").digest(password.toByteArray()).toString()
-            println("hash is $hash")
-            val user = requireNotNull(UserDao.getWithCredentials(username, hash)) {
-                error("Unauthorized", 401)
-            }
-            cookies += Cookie("uid", user.id.toString()).apply { maxAge = 90000 }
-            redirect("/")
-        }
+        router("/", HomeController())
+        router("/login", LoginController())
         router("/register", RegisterController())
         filter {
             if (path.endsWith(".css")) return@filter true
@@ -47,7 +28,6 @@ class MyServer : Server() {
             }
             return@filter true
         }
-
         get("/logout") {
             logout()
             cookies.remove("uid")

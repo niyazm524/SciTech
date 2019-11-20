@@ -5,18 +5,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
     <title>Регистрация</title>
     <link rel="stylesheet" href="main.css">
 </head>
 <body class="background">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">SciTech</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+            class="navbar-toggler"
+            data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse"  id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="btn btn-light" href="#">Обсуждаемое<span class="sr-only">(current)</span></a>
@@ -45,42 +48,49 @@
     </div>
 </nav>
 
-    <div class="container4" style="margin-top: 8%" >
-        <div class="container">
-            <img src="https://dwstroy.ru/lessons/les3373/demo/img/men.png">
-            <form>
-                <div class="dws-input">
-                    <input type="text" name="firstname" placeholder="Имя">
-                </div>
-                <div class="dws-input">
-                    <input type="text" name="secondname" placeholder="Фамилия">
-                </div>
-                <div class="dws-input">
-                    <input type="text" name="firstname" placeholder="Электронная почта">
-                </div>
-                <div class="dws-input">
-                    <input type="password" name="password" placeholder="Пароль">
-                </div>
-                <input class="dws-submit" type="submit" name="submit" value="РЕГИСТРАЦИЯ"><br />
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" value="option1" style="width:20px; height:20px;" id="exampleCheck1" >
-                    <label class="form-check-label"  style="margin-left: 10px; color:#DCDCDC" for="exampleCheck1" >Запомнить меня</label>
-                </div>
-            </form>
-            <div class="dws-social">
-                <i class="fa fa-vk" aria-hidden="true"></i>
-                <i class="fa fa-twitter" aria-hidden="true"></i>
-                <i class="fa fa-facebook" aria-hidden="true"></i>
-                <i class="fa fa-google-plus-official" aria-hidden="true"></i>
-                <i class="fa fa-odnoklassniki" aria-hidden="true"></i>
+<div class="container4" style="margin-top: 8%">
+    <div class="container">
+        <img src="https://dwstroy.ru/lessons/les3373/demo/img/men.png">
+        <form>
+            <div class="dws-input">
+                <input name="firstname" placeholder="Имя" type="text">
             </div>
+            <div class="dws-input">
+                <input name="secondname" placeholder="Фамилия" type="text">
+            </div>
+            <div class="dws-input">
+                <input name="firstname" placeholder="Электронная почта" type="text">
+            </div>
+            <div class="dws-input">
+                <input name="password" placeholder="Пароль" type="password">
+            </div>
+            <input class="dws-submit" name="submit" type="submit" value="РЕГИСТРАЦИЯ"><br/>
+            <div class="form-group form-check">
+                <input class="form-check-input" id="exampleCheck1" style="width:20px; height:20px;" type="checkbox"
+                       value="option1">
+                <label class="form-check-label" for="exampleCheck1" style="margin-left: 10px; color:#DCDCDC">Запомнить
+                    меня</label>
+            </div>
+        </form>
+        <div class="dws-social">
+            <i aria-hidden="true" class="fa fa-vk"></i>
+            <i aria-hidden="true" class="fa fa-twitter"></i>
+            <i aria-hidden="true" class="fa fa-facebook"></i>
+            <i aria-hidden="true" class="fa fa-google-plus-official"></i>
+            <i aria-hidden="true" class="fa fa-odnoklassniki"></i>
         </div>
-
     </div>
 
 </div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script crossorigin="anonymous"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

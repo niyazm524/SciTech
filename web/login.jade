@@ -1,6 +1,14 @@
-html
-  body
-    form(method="POST" action="/")
-      input(type="text" name="username" placeholder="Логин")
+extends includes/base
 
-      input(type="submit" value="Отправить")
+block content
+  img(src='https://dwstroy.ru/lessons/les3373/demo/img/men.png')
+  form
+    .dws-input
+      input(type='text' name='secondname' placeholder='Электронная почта')
+    .dws-input
+      input(type='password' name='password' placeholder='Пароль')
+    input.dws-submit(type='submit' name='submit' value='Войти')
+    br
+    .form-group.form-check
+      input.form-check-input#exampleCheck1(type='checkbox' value='option1' style='width:20px; height:20px;')
+      label.form-check-label(style='margin-left: 10px; color:#DCDCDC' for='exampleCheck1') Запомнить меня
