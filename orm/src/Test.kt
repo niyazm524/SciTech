@@ -6,7 +6,7 @@ data class Test(val id: Int, val name: String, val age: Int? = -1)
 
 object TestDao: Dao() {
     val getByUsername: (username: String, minAge: Int) -> Test?
-            by Select("SELECT * FROM users WHERE name = ? AND age >= ? LIMIT 1")
+            by Select("SELECT * FROM user WHERE name = ? AND age >= ? LIMIT 1")
 
     val create: (test: Test) -> Boolean by Insert()
 }

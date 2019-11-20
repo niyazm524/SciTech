@@ -26,6 +26,11 @@ fun Call.login(username: String, password: String): Boolean {
     return false
 }
 
+fun Call.register(params: Map<String, String>): Boolean {
+    val user = User.from(params).let { it.copy(password = hashPass(it.password)) }
+    return UserDao.createUser(user)
+}
+
 fun Call.logout() {
     session.remove("USER")
 }

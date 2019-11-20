@@ -9,7 +9,7 @@ object PugPlugin : JadeConfiguration() {
 }
 
 
-fun Call.render(templateFile: String, model: Map<String, Any>? = null) {
+fun Call.render(templateFile: String, model: Map<String, *>? = null) {
     PugPlugin.renderTemplate(
         PugPlugin.getTemplate(File(PugPlugin.basePath, templateFile).toString()),
         model ?: hashMapOf(),

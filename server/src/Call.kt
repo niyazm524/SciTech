@@ -11,6 +11,7 @@ class Call internal constructor(val servletRequest: HttpServletRequest, val serv
     val queryString: String? get() = servletRequest.queryString
     val fullPath: String get() = if (queryString != null) "$path?$queryString" else path
     val params: Map<String, String>
+    internal var errorHandler: (error: Exception) -> Unit = this::handleError
     private var _contentType = "text/html"
     var contentType: String
         get() = _contentType
@@ -66,7 +67,11 @@ class Call internal constructor(val servletRequest: HttpServletRequest, val serv
         servletResponse.sendError(code, message)
     }
 
-    internal fun onError(error: Exception) {
+    fun onError(handler: (error: Exception) -> Unit) {
+        errorHandler = handler
+    }
+
+    private fun handleError(error: Exception) {
         servletResponse.writer.use {
             it.println("<h1>Error occurred: <i>${error.message}</i></h1>")
             it.println("<h3>Stack Trace:</h3>")

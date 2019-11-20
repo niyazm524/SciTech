@@ -1,4 +1,10 @@
-html
-  body
-    h1 Welcome, #{login}
-    a(href="/logout") Выйти
+extends includes/base
+
+include includes/carousel
+include includes/post
+
+prepend body
+  if carouselPosts
+    +carousel(carouselPosts)
+  each post in posts
+    +post(post)

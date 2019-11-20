@@ -22,7 +22,7 @@ abstract class Server : HttpServlet() {
                 onNotFound(call)
             }
         } catch (error: Exception) {
-            call.onError(error)
+            call.errorHandler(error)
         }
 
     }

@@ -1,7 +1,5 @@
 package controllers
 
-import dao.UserDao
-import models.User
 import plugins.pug.render
 import routing.Router
 
@@ -12,15 +10,13 @@ class RegisterController : Router() {
         }
 
         post("/") {
-            if (params["agreement"] != "true") {
-                render("register", mapOf("message" to "Примите соглашения"))
-                return@post
-            }
-            val user = User.from(params)
-            if (UserDao.createUser(user)) {
+            onError { render("register", mapOf("message" to it.message)) }
+            if (params["agreement"] != "true") kotlin.error("Вы должны принять соглашение для продолжения.")
+
+            if (register(params)) {
                 redirect("/login")
             } else {
-                render("register", mapOf("message" to "Пользователь не создан"))
+                kotlin.error("Пользователь не создан")
             }
         }
     }
