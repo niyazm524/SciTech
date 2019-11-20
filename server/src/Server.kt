@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse
 
 abstract class Server : HttpServlet() {
     protected open val routes: List<Route> = listOf()
+    lateinit var webPath: String
 
     override fun service(req: HttpServletRequest, resp: HttpServletResponse) {
         val call by lazy { return@lazy Call(req, resp) }
@@ -33,6 +34,11 @@ abstract class Server : HttpServlet() {
     }
 
     protected fun onNotFound(call: Call) {
-        call.respondText("<h2>URL ${call.path} не найден на сервере.</h2>")
+        call.respondHtml("<h2>URL ${call.path} не найден на сервере.</h2>")
+    }
+
+    override fun init() {
+        super.init()
+        webPath = servletContext.getRealPath("")
     }
 }

@@ -1,0 +1,110 @@
+.background {
+    height: 200px;
+    background: linear-gradient(45deg, #EECFBA, #C5DDE8);
+    background-size: 100%;
+}
+
+.radius {
+    border-radius: 20px;
+    box-shadow: 0 0 5px 5px #e7d5c0;
+}
+
+.container4 {
+    height: 10em;
+    position: relative
+}
+
+.container4 h1 {
+    font-family: "Сomic Sans MS";
+    color: #5C5C5C;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+a {
+    color: #fff;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.container {
+    width: 450px;
+    background-color: rgba(24, 33, 52, 0.7);
+    margin: 100px auto 0 auto;
+    text-align: center;
+    box-shadow: 0 -5px 0 #3adbfd;
+    padding-bottom: 20px;
+}
+
+.container img {
+    width: 120px;
+    height: 120px;
+    margin: -60px 0 30px 0;
+    border: 5px solid #1a394f;
+    border-radius: 50%;
+    box-shadow: 0 -5px 0 #3adbfd;
+}
+
+input[type="text"], input[type="password"] {
+    width: 300px;
+    height: 50px;
+    font-size: 18px;
+    margin-bottom: 25px;
+    border-radius: 4px;
+    padding-left: 20px;
+}
+
+.dws-input input:hover {
+    box-shadow: 0 0 6px 3px rgba(58, 219, 253, 0.35);
+}
+
+.dws-submit {
+    padding: 13px 30px;
+    margin: 5px 0 20px 0;
+    font-size: 15px;
+    color: #fff;
+    background-color: #2ca8c6;
+    border: none;
+    border-bottom: 4px solid #6ee9fd;
+    cursor: pointer;
+}
+
+.dws-submit:hover {
+    transition: all 0.5s;
+    background: #fff;
+    color: #2c536c;
+}
+
+.dws-input::before {
+    font-family: "FontAwesome";
+    position: absolute;
+    font-size: 45px;
+
+    color: #2c536c;
+}
+
+
+.dws-input:hover::before {
+    color: #319ebc;
+    transition: all 0.3s;
+}
+
+.dws-social i {
+    color: #fff;
+    font-size: 20px;
+    width: 20px;
+
+}
+
+.dws-social i:hover {
+    background-color: #fff;
+    color: #1a394f;
+    border-radius: 5px;
+    cursor: pointer;
+}

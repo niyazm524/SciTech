@@ -5,10 +5,8 @@ import expressions.Select
 import models.User
 
 object UserDao : Dao() {
-    val getById: (id: Long, name: String, last: String, count: Int, offset: Int) -> User by Select("")
+    val getById: (id: Long) -> User? by Select("SELECT * FROM users WHERE id = ?")
 
-    val getByUUID: (uuid: String) -> User? by Select("")
-
-    val getWithCredentials: (username: String, password: String) -> User?
+    val getWithCredentials: (username: String, passHash: String) -> User?
         by Select("")
 }

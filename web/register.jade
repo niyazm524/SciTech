@@ -1,0 +1,24 @@
+extends includes/base
+
+block content
+  img(src='https://dwstroy.ru/lessons/les3373/demo/img/men.png')
+  form
+    .dws-input
+      input(type='text' name='firstname' placeholder='Имя')
+    .dws-input
+      input(type='text' name='secondname' placeholder='Фамилия')
+    .dws-input
+      input(type='text' name='firstname' placeholder='Электронная почта')
+    .dws-input
+      input(type='password' name='password' placeholder='Пароль')
+    input.dws-submit(type='submit' name='submit' value='РЕГИСТРАЦИЯ')
+    br
+    .form-group.form-check
+      input.form-check-input#exampleCheck1(type='checkbox' value='option1' style='width:20px; height:20px;')
+      label.form-check-label(style='margin-left: 10px; color:#DCDCDC' for='exampleCheck1') Запомнить меня
+  .dws-social
+    i.fa.fa-vk(aria-hidden='true')
+    i.fa.fa-twitter(aria-hidden='true')
+    i.fa.fa-facebook(aria-hidden='true')
+    i.fa.fa-google-plus-official(aria-hidden='true')
+    i.fa.fa-odnoklassniki(aria-hidden='true')
