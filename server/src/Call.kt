@@ -10,7 +10,7 @@ class Call internal constructor(val servletRequest: HttpServletRequest, val serv
     val path: String get() = servletRequest.pathInfo
     val queryString: String? get() = servletRequest.queryString
     val fullPath: String get() = if (queryString != null) "$path?$queryString" else path
-    val params = servletRequest.parameterMap.mapValues { it.value[0] }
+    val params: Map<String, String>
     private var _contentType = "text/html"
     var contentType: String
         get() = _contentType
@@ -25,6 +25,7 @@ class Call internal constructor(val servletRequest: HttpServletRequest, val serv
         servletRequest.characterEncoding = "UTF-8"
         servletResponse.characterEncoding = "UTF-8"
         contentType = "text/html"
+        params = servletRequest.parameterMap.mapValues { it.value[0] }
     }
 
     private inline fun ifNotClosed(block: () -> Unit) {
