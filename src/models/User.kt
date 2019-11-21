@@ -2,6 +2,7 @@ package models
 
 import annotations.Alias
 import annotations.Table
+import misc.Validate
 
 @Table("user")
 data class User(
@@ -20,7 +21,13 @@ data class User(
             val password by map
             val phoneNumber: String? by map
             val avatar: String? by map
-            val data = User(name!!, username!!, password!!, phoneNumber, avatar)
+            val data = User(name!!, username!!, password!!, phoneNumber!!, avatar)
+
+            init {
+                if (!Validate.phoneNumber(phoneNumber!!)) error("Проверьте номер телефона")
+                if (!Validate.password(password!!)) error("В пароле должно содержаться минимум 8 символов")
+                if (!Validate.username(username!!)) error("Введите валидный username")
+            }
         }.data
     }
 }

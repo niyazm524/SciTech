@@ -20,6 +20,7 @@ class MyServer : Server() {
         router("/", HomeController())
         router("/login", LoginController())
         router("/register", RegisterController())
+        router("/post-details", PostDetailsController())
         filter {
             if (!isAuthOk) {
                 redirect("/")

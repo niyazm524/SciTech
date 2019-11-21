@@ -1,0 +1,18 @@
+extends includes/base
+
+block body
+  p.fig
+    img.fig(src="photo/Screenshot_5.png" height="406" width="907")
+  div(style="margin-left: 50px; margin-right: 50px")
+    h4.fig= post.title
+    h5= post.body
+  hr
+  .fig
+    .btn-group(role="group" aria-label="Basic example" style="margin-top: 10px; margin-left: 10px;")
+      button.btn.btn-secondary(type="button") +
+      button.btn.btn-secondary(type="button") -
+  form
+    .form-group(style="margin-left: 50px; margin-right: 50px; margin-top: 40px")
+      label(for="exampleFormControlTextarea1")
+        h3(style="color: #460236") Комментарии
+      textarea.form-control#exampleFormControlTextarea1(rows="3")
