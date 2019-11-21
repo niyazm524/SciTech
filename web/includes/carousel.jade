@@ -5,11 +5,11 @@ mixin carousel(posts)
         li(data-target='#carouselExampleIndicators' data-slide-to=index, class={"active": index == 0})
     .carousel-inner
       each index, post in posts
-      .carousel-item(class={"active": index == 0})
-        img.d-block.w-100(src='photo/1473407330.jpg' height='500' width='1900')
-        .carousel-caption.d-none.d-md-block
-          h2(style='color: #460236')= post.title.substring(1, 120)
-          h4(style='color: #460236')= post.body
+        .carousel-item(class={"active": index == 0})
+          img.d-block.w-100(src='photo/1473407330.jpg' height='500' width='1900')
+          .carousel-caption.d-none.d-md-block
+            h2(style='color: #460236')= post.title.substring(1, 120)
+            h4(style='color: #460236')= post.body
     a.carousel-control-prev(href='#carouselExampleIndicators' role='button' data-slide='prev')
       span.carousel-control-prev-icon(aria-hidden='true')
       span.sr-only Пред.

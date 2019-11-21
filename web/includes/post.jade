@@ -3,8 +3,8 @@ mixin post(post)
     img.align-self-start.mr-3(src="photo/Screenshot_3.png" height="248" width="387")
     .media-body
       h2.mt-0= post.title
-      h5(style="margin-left: 0px; size: 177px")= post.body.substring(1, 260)
+      h5(style="margin-left: 0px; size: 177px")= post.body.length > 200 ? post.body.substring(1, 200) : post.body
       button.btn.btn-info(type="button" style="margin-top: 10px") Подробнее
       .btn-group(role="group" aria-label="Basic example" style="margin-top: 10px; margin-left: 10px;")
-        button.btn.btn-secondary(type="button") +
+        button.btn.btn-secondary(type="button") + | 244
         button.btn.btn-secondary(type="button") -

@@ -10,9 +10,14 @@ object PugPlugin : JadeConfiguration() {
 
 
 fun Call.render(templateFile: String, model: Map<String, *>? = null) {
-    PugPlugin.renderTemplate(
-        PugPlugin.getTemplate(File(PugPlugin.basePath, templateFile).toString()),
-        model ?: hashMapOf(),
-        servletResponse.writer
-    )
+    try {
+        PugPlugin.renderTemplate(
+            PugPlugin.getTemplate(File(PugPlugin.basePath, templateFile).toString()),
+            model?.plus("call" to this) ?: hashMapOf("call" to this) as Map<String, Any>?,
+            servletResponse.writer
+        )
+    } catch (e: Exception) {
+        e.printStackTrace(System.err)
+    }
+
 }

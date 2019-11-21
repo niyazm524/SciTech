@@ -3,7 +3,7 @@ extends includes/base
 include includes/carousel
 include includes/post
 
-prepend body
+block body
   if carouselPosts
     +carousel(carouselPosts)
   each post in posts

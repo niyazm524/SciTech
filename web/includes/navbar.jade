@@ -1,5 +1,5 @@
 nav.navbar.navbar-expand-lg.navbar-light.bg-light
-  a.navbar-brand(href='#') SciTech
+  a.navbar-brand(href='/') SciTech
   button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
     span.navbar-toggler-icon
   .collapse.navbar-collapse#navbarSupportedContent
@@ -28,6 +28,12 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
         a.btn.btn-light(href='#')
           | О нас
           span.sr-only (current)
-    form.form-inline.my-2.my-lg-0
-      input.form-control.mr-sm-2(type='search' placeholder='Search' aria-label='Search')
+    if user
+      a.btn.btn-primary.mr-2(href="/post-new" role="button") Написать
+      a.btn.mr-2(href="/profile" role="button") Профиль (#{user.name})
+    else
+      a.btn.mr-2(href="/register" role="button") Регистрация
+      a.btn.btn-primary.mr-2(href="/login" role="button") Вход
+    form.form-inline.my-2.my-lg-0(action="/" method="GET")
+      input.form-control.mr-sm-2(type='search' name="search" placeholder='Search' aria-label='Search')
       button.btn.btn-outline-primary(type='submit') Поиск
